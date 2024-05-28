@@ -1,0 +1,69 @@
+section.list
+{
+	display : flex;
+	justify-content : space-between;
+	flex-wrap:wrap;
+}
+section.list > div 
+{
+width : 30%;
+}
+section.list img {
+	display:inline-block;
+
+}
+.short-text {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/* Votre CSS ici */
+body {
+    font-family: Arial, sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 8px;
+    margin: 4px 0;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+}
+
+/* style.css */
+section.list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+section.list > div {
+    width: 30%;
+}
+
+section.list img {
+    display: inline-block;
+}
+
+.short-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 8px;
+    margin: 4px 0;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+}

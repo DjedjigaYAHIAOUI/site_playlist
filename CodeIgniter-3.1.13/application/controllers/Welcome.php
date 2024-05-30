@@ -21,5 +21,22 @@ class Welcome extends CI_Controller {
             'albums' => $albums
         ]);
     }
+
+    public function search(){
+        $query = $this->input->post('query');
+        
+        // Rechercher les artistes et les albums
+        $artists = $this->model_music->searchArtists($query);
+        $albums = $this->model_music->searchAlbums($query);
+        $albumDetails = $this->model_music->getAlbumByName($query);
+
+        // Charger la vue 'welcome_message.php'
+        $this->load->view('welcome_message', [
+            'artists' => $artists,
+            'albums' => $albums,
+            'albumDetails' => $albumDetails,
+            'search_query' => $query
+        ]);
+    }
 }
 ?>

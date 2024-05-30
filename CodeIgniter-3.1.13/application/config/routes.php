@@ -55,3 +55,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['albums/view/(:num)'] = 'albums/view/$1';
+$route['welcome/search'] = 'welcome/search';

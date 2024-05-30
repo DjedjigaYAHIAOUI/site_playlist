@@ -8,50 +8,48 @@ class Model_music extends CI_Model {
     }
 
     public function getAlbums() {
-        $query = $this->db->query("
-            SELECT album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg 
-            FROM album 
-            JOIN artist ON album.artistid = artist.id
-            JOIN genre ON genre.id = album.genreid
-            JOIN cover ON cover.id = album.coverid
-            ORDER BY year
-        ");
+        $this->db->select('album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg');
+        $this->db->from('album');
+        $this->db->join('artist', 'album.artistid = artist.id');
+        $this->db->join('genre', 'genre.id = album.genreid');
+        $this->db->join('cover', 'cover.id = album.coverid');
+        $this->db->order_by('year');
+        $query = $this->db->get();
         return $query->result();
     }
 
     public function getArtists() {
-        $query = $this->db->query("
-            SELECT id, name FROM artist ORDER BY name
-        ");
+        $this->db->select('id, name');
+        $this->db->order_by('name');
+        $query = $this->db->get('artist');
         return $query->result();
     }
 
     public function getAlbumById($albumId) {
-        $query = $this->db->query("
-            SELECT album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg 
-            FROM album 
-            JOIN artist ON album.artistid = artist.id
-            JOIN genre ON genre.id = album.genreid
-            JOIN cover ON cover.id = album.coverid
-            WHERE album.id = ?
-        ", array($albumId));
+        $this->db->select('album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg');
+        $this->db->from('album');
+        $this->db->join('artist', 'album.artistid = artist.id');
+        $this->db->join('genre', 'genre.id = album.genreid');
+        $this->db->join('cover', 'cover.id = album.coverid');
+        $this->db->where('album.id', $albumId);
+        $query = $this->db->get();
         return $query->row();
     }
 
     public function getSongsByAlbumId($albumId) {
-        $query = $this->db->query("
-            SELECT track.songId as id, song.name, track.number, track.duration
-            FROM track
-            JOIN song ON track.songId = song.id
-            WHERE track.albumId = ?
-            ORDER BY track.number
-        ", array($albumId));
+        $this->db->select('track.songId as id, song.name, track.number, track.duration');
+        $this->db->from('track');
+        $this->db->join('song', 'track.songId = song.id');
+        $this->db->where('track.albumId', $albumId);
+        $this->db->order_by('track.number');
+        $query = $this->db->get();
         return $query->result();
     }
 
     public function searchArtists($query) {
         $this->db->like('name', $query);
-        return $this->db->get('artist')->result();
+        $query = $this->db->get('artist');
+        return $query->result();
     }
 
     public function searchAlbums($query) {
@@ -61,18 +59,18 @@ class Model_music extends CI_Model {
         $this->db->join('genre', 'genre.id = album.genreid');
         $this->db->join('cover', 'cover.id = album.coverid');
         $this->db->like('album.name', $query);
-        return $this->db->get()->result();
+        $query = $this->db->get();
+        return $query->result();
     }
 
     public function getAlbumByName($name) {
-        $query = $this->db->query("
-            SELECT album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg 
-            FROM album 
-            JOIN artist ON album.artistid = artist.id
-            JOIN genre ON genre.id = album.genreid
-            JOIN cover ON cover.id = album.coverid
-            WHERE album.name = ?
-        ", array($name));
+        $this->db->select('album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg');
+        $this->db->from('album');
+        $this->db->join('artist', 'album.artistid = artist.id');
+        $this->db->join('genre', 'genre.id = album.genreid');
+        $this->db->join('cover', 'cover.id = album.coverid');
+        $this->db->where('album.name', $name);
+        $query = $this->db->get();
         return $query->row();
     }
 

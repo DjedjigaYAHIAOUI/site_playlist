@@ -5,23 +5,19 @@ class Search extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->models('Model_music');
+        $this->load->model('model_music'); // Charger le modèle de la musique
     }
 
     public function index() {
-        $query = $this->input->post('query');
-        $data['search_query'] = $query;
-        $data['artists'] = $this->Model_music->searchArtists($query);
-        $data['albums'] = $this->Model_music->searchAlbums($query);
-        $this->load->view('layout/header', $data);
-        $this->load->view('search_results', $data);
-        $this->load->view('layout/footer', $data);
-    
+        $query = $this->input->post('query'); // Récupérer la requête de recherche depuis le formulaire POST
+        $data['search_query'] = $query; // Passer la requête de recherche à la vue
+        $data['artists'] = $this->model_music->searchArtists($query); // Rechercher des artistes basés sur la requête
+        $data['albums'] = $this->model_music->searchAlbums($query); // Rechercher des albums basés sur la requête
 
-
-        // Charger la vue 'search_results.php' pour afficher les résultats
-        $this->load->view('views/search_results');
-       
+        $this->load->view('layout/header'); // Charger l'en-tête de la page
+        $this->load->view('search_results', $data); // Charger la vue des résultats de recherche avec les données
+        $this->load->view('layout/footer'); // Charger le pied de page
     }
 
 }
+?>

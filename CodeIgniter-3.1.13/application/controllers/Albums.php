@@ -10,22 +10,27 @@ class Albums extends CI_Controller {
 
     public function index(){
         $albums = $this->model_music->getAlbums();
+        $genres = $this->model_music->getGenres();
+
         $this->load->view('layout/header');
-        $this->load->view('albums_list', ['albums' => $albums]);
+        $this->load->view('albums_list', ['albums' => $albums, 'genres' => $genres]);
         $this->load->view('layout/footer');
     }
 
-    public function view($albumId) {
-        $album = $this->model_music->getAlbumById($albumId);
+    public function genre() {
+        $genreId = $this->input->get('genre_id');
 
-        if ($album) {
-            $songs = $this->model_music->getSongsByAlbumId($albumId);
-            $this->load->view('layout/header');
-            $this->load->view('album_song', ['album' => $album, 'songs' => $songs]);
-            $this->load->view('layout/footer');
+        if ($genreId) {
+            $albums = $this->model_music->getAlbumsByGenreId($genreId);
         } else {
-            show_error('Album not found.', 404);
+            $albums = $this->model_music->getAlbums();
         }
+
+        $genres = $this->model_music->getGenres();
+
+        $this->load->view('layout/header');
+        $this->load->view('albums_list', ['albums' => $albums, 'genres' => $genres]);
+        $this->load->view('layout/footer');
     }
 }
 ?>

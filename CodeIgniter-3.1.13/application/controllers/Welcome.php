@@ -5,7 +5,7 @@ class Welcome extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('model_music');
+        $this->load->model('model_music'); // Charger le modèle de musique
     }
 
     public function index() {

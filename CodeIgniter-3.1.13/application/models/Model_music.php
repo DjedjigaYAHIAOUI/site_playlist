@@ -45,18 +45,15 @@ class Model_music extends CI_Model {
         );
         return $query->result();
     }
-
-    public function searchArtists($query) {
-        $this->db->like('name', $query);
-        $query = $this->db->get('artist');
-        return $query->result();
+    public function search_Albums($query) {
+        $this->db->select('album.id, album.name, artist.name as artistName, year');
+        $this->db->from('album');
+        $this->db->join('artist', 'album.artistId = artist.id');
+        $this->db->like('album.name', $query ,'after');
+        $result = $this->db->get();
+        return $result->result();
     }
-
-    public function searchAlbums($query) {
-        $this->db->like('name', $query);
-        $query = $this->db->get('album');
-        return $query->result();
-    }
+    
 
 }
 ?>

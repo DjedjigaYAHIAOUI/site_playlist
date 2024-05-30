@@ -3,12 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-    public function __construct(){
+    public function __construct() {
         parent::__construct();
         $this->load->model('model_music');
     }
 
-    public function index(){
+    public function index() {
         // Récupérer la liste des artistes
         $artists = $this->model_music->getArtists();
 
@@ -22,9 +22,9 @@ class Welcome extends CI_Controller {
         ]);
     }
 
-    public function search(){
+    public function search() {
         $query = $this->input->post('query');
-        
+
         // Rechercher les artistes et les albums
         $artists = $this->model_music->searchArtists($query);
         $albums = $this->model_music->searchAlbums($query);
@@ -38,5 +38,5 @@ class Welcome extends CI_Controller {
             'search_query' => $query
         ]);
     }
+
 }
-?>

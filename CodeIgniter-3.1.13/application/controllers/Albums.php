@@ -15,4 +15,3 @@ $this->load->view('layout/footer');
 }
 
 }
-

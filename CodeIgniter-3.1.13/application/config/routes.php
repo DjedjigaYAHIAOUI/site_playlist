@@ -52,9 +52,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'welcome'; // Contrôleur par défaut
 $route['search'] = 'search/index'; 
+$route['welcome/search'] = 'welcome/search';
+
 // Fichier routes.php
 
 // Route pour le contrôleur de recherche
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-?>
+$route['album/details/(:num)'] = 'album/details/$1';

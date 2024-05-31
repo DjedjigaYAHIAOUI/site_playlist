@@ -10,7 +10,7 @@
 <h1>List of Artists</h1>
 <ul>
     <?php foreach($artists as $artist): ?>
-        <li><?php echo htmlspecialchars($artist->name); ?></li>
+        <li><a href="<?php echo site_url('artists/view/'.$artist->id); ?>"><?php echo $artist->name; ?></a></li>
     <?php endforeach; ?>
 </ul>
 

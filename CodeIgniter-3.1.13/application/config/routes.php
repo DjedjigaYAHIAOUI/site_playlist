@@ -58,5 +58,7 @@ $route['welcome/search'] = 'welcome/search';
 
 // Route pour le contrôleur de recherche
 $route['404_override'] = '';
+$route['artists/view/(:num)'] = 'artists/view/$1';
+
 $route['translate_uri_dashes'] = FALSE;
 $route['album/details/(:num)'] = 'album/details/$1';

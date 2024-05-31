@@ -14,5 +14,14 @@ class Artists extends CI_Controller {
         $this->load->view('artists_list', ['artists' => $artists]);
         $this->load->view('layout/footer');
     }
+
+    public function view($artistId) {
+        $artist = $this->model_music->getArtistById($artistId);
+        $albums = $this->model_music->getAlbumsByArtistId($artistId);
+
+        $this->load->view('layout/header');
+        $this->load->view('artist_albums', ['artist' => $artist, 'albums' => $albums]);
+        $this->load->view('layout/footer');
+    }
 }
 ?>

@@ -6,6 +6,8 @@ class Albums extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('model_music');
+        $this->load->helper('url'); // Charge le helper URL
+        $this->load->view('route'); // Charge le fichier de configuration des routes
     }
 
     public function index(){

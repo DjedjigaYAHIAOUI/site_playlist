@@ -52,7 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'welcome'; // Contrôleur par défaut
 $route['search'] = 'search/index'; 
-$route['albums/view/(:any)'] = 'albums/view/$1';// Route pour le contrôleur de recherche
+// Fichier routes.php
+$route['albums/view/(:any)'] = 'songs/view/$1'; // Route pour afficher les détails de l'album et ses chansons
+// Route pour le contrôleur de recherche
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 ?>

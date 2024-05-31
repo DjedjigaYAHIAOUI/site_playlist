@@ -45,6 +45,7 @@ class Model_music extends CI_Model {
         );
         return $query->result();
     }
+    
     public function search_Albums($query) {
         $this->db->select('album.id, album.name, artist.name as artistName, year');
         $this->db->from('album');
@@ -53,7 +54,29 @@ class Model_music extends CI_Model {
         $result = $this->db->get();
         return $result->result();
     }
-    
 
+    public function getAlbumById($albumId) {
+        $query = $this->db->query(
+            "SELECT album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg 
+            FROM album 
+            JOIN artist ON album.artistid = artist.id
+            JOIN genre ON genre.id = album.genreid
+            JOIN cover ON cover.id = album.coverid
+            WHERE album.id = ?", array($albumId)
+        );
+        return $query->row();
+    }
+
+    public function getSongsByAlbumId($albumId) {
+        $query = $this->db->query(
+            "SELECT track.number, song.name, track.duration
+            FROM track
+            JOIN song ON track.songId = song.id
+            WHERE track.albumId = ?
+            ORDER BY track.diskNumber, track.number", array($albumId)
+        );
+        return $query->result();
+    }
 }
 ?>
+

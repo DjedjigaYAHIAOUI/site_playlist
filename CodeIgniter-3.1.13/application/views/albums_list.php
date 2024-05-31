@@ -17,7 +17,7 @@
                     <select name="genre_id">
                         <option value="">All Genres</option>
                         <?php foreach ($genres as $genre): ?>
-                            <option value="<?php echo $genre->id; ?>"><?php echo htmlspecialchars($genre->name, ENT_QUOTES, 'UTF-8'); ?></option>
+                            <option value="<?php echo $genre->id; ?>"><?php echo $genre->name; ?></option>
                         <?php endforeach; ?>
                     </select>
                     <button type="submit">Filter by Genre</button>
@@ -31,10 +31,10 @@
             <?php if (!empty($albums)): ?>
                 <?php foreach ($albums as $album): ?>
                     <li>
-                        <h3><?php echo htmlspecialchars($album->name, ENT_QUOTES, 'UTF-8'); ?></h3>
-                        <p>Artist: <?php echo htmlspecialchars($album->artistName, ENT_QUOTES, 'UTF-8'); ?></p>
-                        <p>Genre: <?php echo htmlspecialchars($album->genreName, ENT_QUOTES, 'UTF-8'); ?></p>
-                        <p>Year: <?php echo htmlspecialchars($album->year, ENT_QUOTES, 'UTF-8'); ?></p>
+                        <h3><?php echo $album->name; ?></h3>
+                        <p>Artist: <?php echo $album->artistName; ?></p>
+                        <p>Genre: <?php echo $album->genreName; ?></p>
+                        <p>Year: <?php echo $album->year; ?></p>
                         <img src="data:image/jpeg;base64,<?php echo base64_encode($album->jpeg); ?>" alt="Album Cover" />
                         <a href="<?php echo site_url('albums/view/' . $album->id); ?>">View Album Details</a>
                     </li>
@@ -47,3 +47,4 @@
 
 </body>
 </html>
+

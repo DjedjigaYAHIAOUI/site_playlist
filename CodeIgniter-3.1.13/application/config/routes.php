@@ -62,8 +62,8 @@ $route['artists/view/(:num)'] = 'artists/view/$1';
 
 $route['translate_uri_dashes'] = FALSE;
 $route['album/details/(:num)'] = 'album/details/$1';
-$route['playlists'] = 'playlists/index';
-$route['playlists/create'] = 'playlists/create';
+$route['playlist'] = 'playlist/index';
+$route['playlist/create'] = 'playlist/create';
 $route['auth/register'] = 'auth/register';
 $route['auth/login'] = 'auth/login';
 $route['auth/logout'] = 'auth/logout';

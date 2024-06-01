@@ -1,31 +1,31 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Playlist extends CI_Controller {
+class Playlists extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         $this->load->model('Model_playlist');
         $this->load->model('Model_user');
-        if (!$this->session->userdata('utilisateur_id')) {
-            redirect('auth/login');
-        }
+        $this->load->library('session');
+
+
     }
 
-    public function index() {
-        $utilisateur_id = $this->session->userdata('utilisateur_id');
+    public function index($utilisateur_id) {
+        // Vérifier l'authentification de l'utilisateur ici si nécessaire
         $playlists = $this->Model_playlist->getPlaylistsByUserId($utilisateur_id);
         $this->load->view('layout/header');
         $this->load->view('playlists_list', ['playlists' => $playlists]);
         $this->load->view('layout/footer');
     }
 
-    public function create() {
+    public function create($utilisateur_id) {
+        // Vérifier l'authentification de l'utilisateur ici si nécessaire
         if ($this->input->post()) {
             $nom = $this->input->post('nom');
-            $utilisateur_id = $this->session->userdata('utilisateur_id');
             $this->Model_playlist->createPlaylist($utilisateur_id, $nom);
-            redirect('playlists');
+            redirect('playlists/index/'.$utilisateur_id);
         } else {
             $this->load->view('layout/header');
             $this->load->view('create_playlist');

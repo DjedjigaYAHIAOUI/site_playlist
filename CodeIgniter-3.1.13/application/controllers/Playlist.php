@@ -7,7 +7,8 @@ class Playlists extends CI_Controller {
         parent::__construct();
         $this->load->model('Model_playlist');
         $this->load->model('Model_user');
-        $this->load->library('session');
+        $this->load->library('Session');
+
 
 
     }

@@ -7,16 +7,16 @@ class Playlist extends CI_Controller {
         parent::__construct();
         $this->load->model('Model_playlist');
         $this->load->model('Model_user');
-        $this->load->library('Session');
+        $this->load->library('session');
 
         // Vérifier l'authentification de l'utilisateur ici
-        if (!$this->Session->userdata('utilisateur_id')) {
+        if (!$this->session->userdata('utilisateur_id')) {
             redirect('auth/login');
         }
     }
 
     public function index() {
-        $utilisateur_id = $this->Session->userdata('utilisateur_id');
+        $utilisateur_id = $this->session->userdata('utilisateur_id');
         $playlists = $this->Model_playlist->getPlaylistsByUserId($utilisateur_id);
         $this->load->view('layout/header');
         $this->load->view('playlist_list', ['playlists' => $playlists]);
@@ -24,7 +24,7 @@ class Playlist extends CI_Controller {
     }
 
     public function create() {
-        $utilisateur_id = $this->Session->userdata('utilisateur_id');
+        $utilisateur_id = $this->session->userdata('utilisateur_id');
         if ($this->input->post()) {
             $nom = $this->input->post('nom');
             $this->Model_playlist->createPlaylist($utilisateur_id, $nom);

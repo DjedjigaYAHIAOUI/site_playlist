@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Créer une Playlist</h1>
-    <form method="post" action="<?php echo site_url('playlists/create'); ?>">
+    <form method="post" action="<?php echo site_url('playlist/create'); ?>">
         <label for="nom">Nom de la Playlist :</label>
         <input type="text" id="nom" name="nom" required>
         <br>

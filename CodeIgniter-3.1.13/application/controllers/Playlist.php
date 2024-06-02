@@ -8,22 +8,21 @@ class Playlist extends CI_Controller {
         $this->load->model('Model_playlist');
         $this->load->model('Model_user');
         $this->load->library('session');
-
-        // Vérifier l'authentification de l'utilisateur ici
-        if (!$this->session->userdata('utilisateur_id')) {
-            redirect('auth/login');
-        }
+        $this->load->helper('url');
     }
 
     public function index() {
-        $utilisateur_id = $this->session->userdata('utilisateur_id');
-        $playlists = $this->Model_playlist->getPlaylistsByUserId($utilisateur_id);
         $this->load->view('layout/header');
-        $this->load->view('playlist_list', ['playlists' => $playlists]);
+        $this->load->view('playlist_list', ['playlists' => $this->Model_playlist->getPlaylistsByUserId($this->session->userdata('utilisateur_id'))]);
         $this->load->view('layout/footer');
     }
 
     public function create() {
+        if (!$this->session->userdata('utilisateur_id')) {
+            $this->session->set_userdata('redirect_url', 'playlist/create');
+            redirect('auth/login');
+        }
+
         $utilisateur_id = $this->session->userdata('utilisateur_id');
         if ($this->input->post()) {
             $nom = $this->input->post('nom');
@@ -36,6 +35,4 @@ class Playlist extends CI_Controller {
         }
     }
 }
-?>
-
 ?>

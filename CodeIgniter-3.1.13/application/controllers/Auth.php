@@ -14,18 +14,20 @@ class Auth extends CI_Controller {
         if ($this->input->post()) {
             $nom_utilisateur = $this->input->post('nom_utilisateur');
             $mot_de_passe = $this->input->post('mot_de_passe');
-            $result = $this->model_user->register($nom_utilisateur, $mot_de_passe);
-
-            if ($result === 'duplicate') {
-                $this->load->view('login', array('register_error' => 'Le nom d\'utilisateur existe déjà. Veuillez en choisir un autre.'));
+            $user_id = $this->model_user->register($nom_utilisateur, $mot_de_passe);
+            if ($user_id) {
+                // Inscription réussie, rediriger vers la page de création de playlist
+                $this->session->set_userdata('utilisateur_id', $user_id);
+                redirect('playlist/create');
             } else {
-                redirect('auth/login');
+                // Gérer l'échec de l'inscription
+                redirect('auth/register');
             }
         } else {
-            $this->load->view('login');
+            $this->load->view('register');
         }
     }
-
+    
     public function login() {
         if ($this->input->post()) {
             $nom_utilisateur = $this->input->post('nom_utilisateur');

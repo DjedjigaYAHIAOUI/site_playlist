@@ -18,6 +18,19 @@
         <br>
         <button type="submit">Se connecter</button>
     </form>
-    <p>Vous n'avez pas de compte ? <a href="<?php echo site_url('auth/register'); ?>">S'inscrire</a></p>
+
+    <h2>S'inscrire</h2>
+    <?php if (isset($register_error)): ?>
+        <p style="color: red;"><?php echo $register_error; ?></p>
+    <?php endif; ?>
+    <form method="post" action="<?php echo site_url('auth/register'); ?>">
+        <label for="nom_utilisateur">Nom d'utilisateur :</label>
+        <input type="text" id="nom_utilisateur" name="nom_utilisateur" required>
+        <br>
+        <label for="mot_de_passe">Mot de passe :</label>
+        <input type="password" id="mot_de_passe" name="mot_de_passe" required>
+        <br>
+        <button type="submit">S'inscrire</button>
+    </form>
 </body>
 </html>

@@ -6,8 +6,8 @@ class Auth extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('model_user');
-        $this->load->library('session');
-        $this->load->helper('url');
+        $this->load->library('session');  // Chargement de la bibliothèque de session
+        $this->load->helper('url');  // Chargement du helper URL
     }
 
     public function register() {
@@ -27,7 +27,7 @@ class Auth extends CI_Controller {
             $this->load->view('register');
         }
     }
-    
+
     public function login() {
         if ($this->input->post()) {
             $nom_utilisateur = $this->input->post('nom_utilisateur');
@@ -49,3 +49,4 @@ class Auth extends CI_Controller {
         redirect('auth/login');
     }
 }
+?>

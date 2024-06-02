@@ -1,4 +1,4 @@
-// application/models/Model_user.php
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 

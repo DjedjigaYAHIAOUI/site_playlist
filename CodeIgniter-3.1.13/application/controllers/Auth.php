@@ -17,7 +17,7 @@ class Auth extends CI_Controller {
             $user_id = $this->Model_user->register($nom_utilisateur, $mot_de_passe);
             if ($user_id) {
                 $this->session->set_userdata('utilisateur_id', $user_id);
-                redirect('playlist/create'); // Redirection après inscription
+                redirect('playlist/create');
             } else {
                 $this->load->view('register', array('error' => 'Échec de l\'inscription. Veuillez réessayer.'));
             }
@@ -33,7 +33,7 @@ class Auth extends CI_Controller {
             $user = $this->Model_user->login($nom_utilisateur, $mot_de_passe);
             if ($user) {
                 $this->session->set_userdata('utilisateur_id', $user->id);
-                redirect('playlist/create'); // Redirection après connexion
+                redirect('playlist/create');
             } else {
                 $this->load->view('login', array('error' => 'Nom d\'utilisateur ou mot de passe invalide.'));
             }

@@ -14,15 +14,10 @@ class Auth extends CI_Controller {
         if ($this->input->post()) {
             $nom_utilisateur = $this->input->post('nom_utilisateur');
             $mot_de_passe = $this->input->post('mot_de_passe');
-            $result = $this->model_user->register($nom_utilisateur, $mot_de_passe);
-
-            if ($result === 'duplicate') {
-                $this->load->view('login', array('register_error' => 'Le nom d\'utilisateur existe déjà. Veuillez en choisir un autre.'));
-            } else {
-                redirect('auth/login');
-            }
+            $this->model_user->register($nom_utilisateur, $mot_de_passe);
+            redirect('auth/login');
         } else {
-            $this->load->view('login');
+            $this->load->view('register');
         }
     }
 
@@ -33,7 +28,7 @@ class Auth extends CI_Controller {
             $user = $this->model_user->login($nom_utilisateur, $mot_de_passe);
             if ($user) {
                 $this->session->set_userdata('utilisateur_id', $user->id);
-                redirect('playlist');
+                redirect('playlists');
             } else {
                 $this->load->view('login', array('error' => 'Nom d\'utilisateur ou mot de passe invalide.'));
             }
@@ -47,3 +42,4 @@ class Auth extends CI_Controller {
         redirect('auth/login');
     }
 }
+?>

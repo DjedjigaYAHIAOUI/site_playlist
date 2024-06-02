@@ -6,6 +6,7 @@ class Welcome extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Model_music'); // Charger le modèle de musique
+        $this->load->model('Model_playlist'); // Charger le modèle de playlist
         $this->load->helper('url'); // Charger l'helper pour les URLs
     }
 
@@ -38,5 +39,20 @@ class Welcome extends CI_Controller {
         ]);
     }
 
+    public function create_playlist() {
+        if ($this->input->post()) {
+            // Récupérer l'ID de l'utilisateur actuellement connecté
+            $utilisateur_id = $this->session->userdata('utilisateur_id');
+            
+            // Récupérer le nom de la playlist à partir des données POST
+            $nom = $this->input->post('nom');
+
+            // Appeler la méthode du modèle pour créer une nouvelle playlist
+            $this->Model_playlist->createPlaylist($utilisateur_id, $nom);
+            
+            // Rediriger vers la page d'accueil ou toute autre page appropriée après la création de la playlist
+            redirect('welcome');
+        }
+    }
 }
 ?>

@@ -6,12 +6,15 @@ class Playlist extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Model_playlist');
-        $this->load->model('Model_user');
         $this->load->library('session');
+        $this->load->helper('url');
 
-        if (!$this->session->userdata('utilisateur_id')) {
-            redirect('auth/login');
-        }
+   
+          if(!$this->session->userdata('utilisateur_id')) {
+
+            redirect('auth/login'); 
+        
+          }             
     }
 
     public function index() {

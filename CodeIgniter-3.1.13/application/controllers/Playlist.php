@@ -18,7 +18,7 @@ class Playlist extends CI_Controller {
         $utilisateur_id = $this->session->userdata('utilisateur_id');
         $playlists = $this->Model_playlist->getPlaylistsByUserId($utilisateur_id);
         $this->load->view('layout/header');
-        $this->load->view('playlist_list', ['playlists' => $playlists]);
+        $this->load->view('playlists_list', ['playlists' => $playlists]);
         $this->load->view('layout/footer');
     }
 

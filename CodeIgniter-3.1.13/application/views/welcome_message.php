@@ -10,18 +10,3 @@
     </form>
 </div>
 
-<h2>Liste des artistes</h2>
-<ul>
-    <?php foreach ($artists as $artist): ?>
-        <li><?php echo $artist->name; ?></li>
-    <?php endforeach; ?>
-</ul>
-
-<h2>Liste des albums</h2>
-<ul>
-    <?php foreach ($albums as $album): ?>
-        <li><?php echo $album->name; ?></li>
-    <?php endforeach; ?>
-</ul>
-
-<?php $this->load->view('layout/footer'); ?>

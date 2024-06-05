@@ -10,13 +10,17 @@ class Welcome extends CI_Controller {
         $this->load->helper('url'); // Charger l'helper pour les URLs
     }
 
-    public function index() {
-        // Récupérer les artistes populaires
-        $artists = $this->Model_music->getPopularArtists();
+     public function index() {
+        // Récupérer tous les artistes et albums initialement
+         $popular_artists = $this->Model_music->getPopularArtists();
+        $artists = $this->Model_music->getArtists();
+        $albums = $this->Model_music->getAlbums();
 
-        // Charger la vue principale 'welcome_message.php' avec les artistes populaires
+        // Charger la vue principale 'welcome_message.php' avec les artistes et albums
         $this->load->view('welcome_message', [
-            'artists' => $artists
+        'popular_artists' => $popular_artists,
+            'artists' => $artists,
+            'albums' => $albums
         ]);
     }
 

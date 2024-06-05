@@ -100,14 +100,28 @@ class Model_music extends CI_Model {
         );
         return $query->result();
     }
+
+    public function getSongsByArtistId($artistId) {
+        $query = $this->db->query(
+            "SELECT song.id, song.name, album.name as albumName, album.year
+            FROM song
+            JOIN track ON track.songId = song.id
+            JOIN album ON track.albumId = album.id
+            WHERE album.artistid = ?
+            ORDER BY album.year, track.number", array($artistId)
+        );
+        return $query->result();
+    }
+
     public function getPopularArtists($limit = 8) {
-    $this->db->select('artist.id, artist.name');
-    $this->db->from('artist');
-    // Ajoutez ici la logique pour récupérer les artistes populaires, par exemple, en fonction du nombre de chansons ou d'albums vendus.
-    $this->db->limit($limit);
-    $query = $this->db->get();
-    return $query->result();
-}
+        $this->db->select('artist.id, artist.name');
+        $this->db->from('artist');
+        // Ajoutez ici la logique pour récupérer les artistes populaires, par exemple, en fonction du nombre de chansons ou d'albums vendus.
+        $this->db->limit($limit);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 }
 ?>
+

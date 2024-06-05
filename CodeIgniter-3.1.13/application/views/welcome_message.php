@@ -1,5 +1,13 @@
 <?php $this->load->view('layout/header'); ?>
 
+<!-- Formulaire de recherche -->
+<div class="search-bar">
+    <form action="<?php echo site_url('welcome/search'); ?>" method="post">
+        <input type="text" id="search-input" name="query" placeholder="Rechercher artiste ou album">
+        <button type="submit">Rechercher</button>
+    </form>
+</div>
+
 <h1>Bienvenue</h1>
 
 <!-- Affichage des artistes populaires -->
@@ -20,12 +28,5 @@
     <?php endif; ?>
 </div>
 
-<!-- Formulaire de recherche -->
-<div class="search-bar">
-    <form action="<?php echo site_url('welcome/search'); ?>" method="post">
-        <input type="text" id="search-input" name="query" placeholder="Rechercher artiste ou album">
-        <button type="submit">Rechercher</button>
-    </form>
-</div>
-
 <?php $this->load->view('layout/footer'); ?>
+

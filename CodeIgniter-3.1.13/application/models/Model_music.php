@@ -100,5 +100,14 @@ class Model_music extends CI_Model {
         );
         return $query->result();
     }
+    public function getPopularArtists($limit = 8) {
+    $this->db->select('artist.id, artist.name');
+    $this->db->from('artist');
+    // Ajoutez ici la logique pour récupérer les artistes populaires, par exemple, en fonction du nombre de chansons ou d'albums vendus.
+    $this->db->limit($limit);
+    $query = $this->db->get();
+    return $query->result();
+}
+
 }
 ?>

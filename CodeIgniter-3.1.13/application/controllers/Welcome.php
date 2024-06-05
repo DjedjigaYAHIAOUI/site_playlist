@@ -11,14 +11,12 @@ class Welcome extends CI_Controller {
     }
 
     public function index() {
-        // Récupérer tous les artistes et albums initialement
-        $artists = $this->Model_music->getArtists();
-        $albums = $this->Model_music->getAlbums();
+        // Récupérer les artistes populaires
+        $artists = $this->Model_music->getPopularArtists();
 
-        // Charger la vue principale 'welcome_message.php' avec les artistes et albums
+        // Charger la vue principale 'welcome_message.php' avec les artistes populaires
         $this->load->view('welcome_message', [
-            'artists' => $artists,
-            'albums' => $albums
+            'artists' => $artists
         ]);
     }
 
@@ -27,9 +25,9 @@ class Welcome extends CI_Controller {
         $query = $this->input->post('query');
 
         // Effectuer la recherche d'albums, d'artistes et de chansons en utilisant les méthodes du modèle
-        $albums = $this->Model_music->search_Albums($query);
-        $artists = $this->Model_music->search_Artists($query);
-        $songs = $this->Model_music->search_Songs($query);
+        $albums = $this->Model_music->searchAlbums($query);
+        $artists = $this->Model_music->searchArtists($query);
+        $songs = $this->Model_music->searchSongs($query);
 
         // Charger la vue 'search_results.php' avec les résultats de la recherche
         $this->load->view('search_results', [
@@ -53,6 +51,16 @@ class Welcome extends CI_Controller {
             // Rediriger vers la page d'accueil ou toute autre page appropriée après la création de la playlist
             redirect('welcome');
         }
+    }
+
+    public function artist_songs($artistId) {
+        // Récupérer les chansons de l'artiste spécifié
+        $songs = $this->Model_music->getSongsByArtistId($artistId);
+
+        // Charger la vue 'artist_songs.php' avec les chansons de l'artiste
+        $this->load->view('artist_songs', [
+            'songs' => $songs
+        ]);
     }
 }
 ?>

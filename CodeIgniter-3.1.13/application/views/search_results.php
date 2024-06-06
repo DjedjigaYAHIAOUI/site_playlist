@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Résultats de Recherche</title>
-    <!-- Inclure ici vos feuilles de style CSS ou d'autres scripts -->
-    <!-- Exemple : <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>"> -->
+    
 </head>
 <body>
-    <?php $this->load->view('layout/sidebar'); ?>
-
+   
     <section class="search-results">
         <h2>Résultats de Recherche</h2>
         
@@ -67,7 +65,7 @@
 
     </section>
 
-    <!-- Inclure ici d'autres scripts ou des éléments HTML nécessaires -->
+ 
 
 </body>
 </html>

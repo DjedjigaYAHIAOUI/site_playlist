@@ -1,4 +1,3 @@
-// application/models/Model_playlist.php
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 

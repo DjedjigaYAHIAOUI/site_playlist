@@ -1,4 +1,5 @@
 <?php $this->load->view('layout/header'); ?>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/style.css'); ?>">
 
 <!-- Formulaire de recherche -->
 <div class="search-bar">
@@ -14,19 +15,18 @@
 <div class="popular-artists">
     <h2>Artistes populaires</h2>
     <?php if (!empty($artists)): ?>
-        <ul>
+        <div class="artist-circles">
             <?php foreach ($artists as $artist): ?>
-                <li>
+                <div class="artist-circle">
                     <a href="<?php echo site_url('welcome/artist_songs/' . $artist->id); ?>">
                         <?php echo $artist->name; ?>
                     </a>
-                </li>
+                </div>
             <?php endforeach; ?>
-        </ul>
+        </div>
     <?php else: ?>
         <p>Aucun artiste trouvé.</p>
     <?php endif; ?>
 </div>
 
 <?php $this->load->view('layout/footer'); ?>
-

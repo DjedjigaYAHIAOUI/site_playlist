@@ -20,6 +20,8 @@ section.list img {
 
 /* Votre CSS ici */
 body {
+	background-color: #121212; /* Couleur de fond sombre */
+    color: #e0e0e0; 
     font-family: Arial, sans-serif;
 }
 
@@ -61,9 +63,71 @@ ul {
     padding: 0;
 }
 
-li {
-    padding: 8px;
-    margin: 4px 0;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
+
+/* Ajoutez ces styles à votre CSS */
+
+/* Encadrement en cercle avec fond coloré pour les noms d'artistes */
+.popular-artists ul li {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    margin: 4px 8px;
+}
+
+.popular-artists ul li a {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 50px; /* ou la moitié de la hauteur, pour créer un cercle */
+    background-color: #6ab04c; /* Couleur de fond du cercle */
+    color: #fff; /* Couleur du texte */
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.popular-artists ul  a:hover {
+    background-color: #4d7c3c; /* Couleur de fond du cercle au survol */
+    
+}
+/* Ajoutez ces styles à votre CSS */
+.artist-circles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.artist-circle {
+    background: linear-gradient(145deg, #FFD700, #DAA520); /* Couleur dorée avec dégradé */
+    color: #121212; /* Couleur du texte dans les cercles */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.artist-circle:hover {
+    transform: scale(1.1);
+    background: linear-gradient(145deg, #E6BE8A, #B8860B); /* Couleur dorée foncée au survol */
+}
+
+.artist-circle a {
+    text-decoration: none;
+    color: #121212; /* Couleur du texte dans les cercles */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.artist-circle a:hover {
+    color: #121212; /* Couleur du texte au survol dans les cercles */
 }

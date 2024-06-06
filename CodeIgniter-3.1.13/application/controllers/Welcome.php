@@ -29,7 +29,7 @@ class Welcome extends CI_Controller {
         $query = $this->input->post('query');
 
         // Effectuer la recherche d'albums, d'artistes et de chansons en utilisant les méthodes du modèle
-        $albums = $this->Model_music->searchAlbums($query);
+        $albums = $this->Model_music->search_Albums($query);
         $artists = $this->Model_music->searchArtists($query);
         $songs = $this->Model_music->searchSongs($query);
 

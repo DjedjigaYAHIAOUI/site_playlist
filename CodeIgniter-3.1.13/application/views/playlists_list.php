@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Mes Playlists</title>
-</head>
-<body>
-    <h1>Mes Playlists</h1>
-    <a href="<?php echo site_url('playlists/create'); ?>">Créer une nouvelle playlist</a>
-    <ul
+<h2>Ma Playlist</h2>
+
+<?php if (isset($playlist_songs) && !empty($playlist_songs)): ?>
+    <ul>
+        <?php foreach ($playlist_songs as $song): ?>
+            <li>
+                <?php echo $song->name; ?> - <?php echo $song->artistName; ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>Aucune chanson dans la playlist.</p>
+<?php endif; ?>
+
+<a href="<?php echo site_url('playlist/create'); ?>" class="btn btn-primary">Créer une Playlist</a>

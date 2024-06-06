@@ -3,11 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_music extends CI_Model {
 
-    public function __construct(){
+    public function __construct() {
+        parent::__construct();
         $this->load->database();
     }
 
-    public function getAlbums(){
+    public function getAlbums() {
         $query = $this->db->query(
             "SELECT album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg 
             FROM album 
@@ -19,11 +20,31 @@ class Model_music extends CI_Model {
         return $query->result();
     }
 
+    public function getChansons() {
+        $query = $this->db->query(
+            "SELECT song.id, song.name, album.name as albumName, artist.name as artistName 
+            FROM song 
+            JOIN track ON track.songId = song.id
+            JOIN album ON track.albumId = album.id
+            JOIN artist ON album.artistid = artist.id
+            ORDER BY album.year, track.number"
+        );
+        return $query->result();
+    }
+
     public function getGenres() {
         $query = $this->db->query(
             "SELECT id, name FROM genre ORDER BY name"
         );
         return $query->result();
+    }
+
+    public function searchArtists($query) {
+        $result = $this->db->query(
+            "SELECT id, name FROM artist 
+            WHERE name LIKE ?", array("%$query%")
+        );
+        return $result->result();
     }
 
     public function getAlbumsByGenreId($genreId) {
@@ -45,7 +66,7 @@ class Model_music extends CI_Model {
         );
         return $query->result();
     }
-    
+
     public function search_Albums($query) {
         $result = $this->db->query(
             "SELECT album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg 
@@ -53,7 +74,7 @@ class Model_music extends CI_Model {
             JOIN artist ON album.artistid = artist.id
             JOIN genre ON genre.id = album.genreid
             JOIN cover ON cover.id = album.coverid
-            WHERE album.name = ?", array($result)
+            WHERE album.name LIKE ?", array("%$query%")
         );
         return $result->result();
     }
@@ -116,12 +137,21 @@ class Model_music extends CI_Model {
     public function getPopularArtists($limit = 8) {
         $this->db->select('artist.id, artist.name');
         $this->db->from('artist');
-        // Ajoutez ici la logique pour récupérer les artistes populaires, par exemple, en fonction du nombre de chansons ou d'albums vendus.
         $this->db->limit($limit);
         $query = $this->db->get();
         return $query->result();
     }
 
+    public function searchSongs($query) {
+        $result = $this->db->query(
+            "SELECT song.id, song.name, album.name as albumName, artist.name as artistName
+            FROM song
+            JOIN track ON track.songId = song.id
+            JOIN album ON track.albumId = album.id
+            JOIN artist ON album.artistid = artist.id
+            WHERE song.name LIKE ?", array("%$query%")
+        );
+        return $result->result();
+    }
 }
 ?>
-

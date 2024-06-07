@@ -27,27 +27,49 @@ class Playlist extends CI_Controller {
         $utilisateur_id = $this->session->userdata('utilisateur_id');
         if ($this->input->post()) {
             $nom = $this->input->post('nom');
-            $selected_albums = $this->input->post('selected_albums');
-            $selected_songs = $this->input->post('selected_songs');
-            $this->Model_playlist->createPlaylist($utilisateur_id, $nom, $selected_albums, $selected_songs);
+            $this->Model_playlist->createPlaylist($utilisateur_id, $nom);
             redirect('playlist');
         } else {
-            $albums = $this->Model_music->getAlbums();
-            $chansons = $this->Model_music->getChansons();
             $this->load->view('layout/header');
-            $this->load->view('create_playlist', ['albums' => $albums, 'chansons' => $chansons]);
+            $this->load->view('create_playlist');
             $this->load->view('layout/footer');
         }
     }
 
-    public function select_albums() {
-        $albums = $this->Model_music->getAlbums();
-        $this->load->view('select_albums', ['albums' => $albums]);
+    public function view_playlist($id) {
+        $playlist = $this->Model_playlist->getPlaylistById($id);
+        $songs = $this->Model_playlist->getSongsInPlaylist($id);
+        $albums = $this->Model_playlist->getAlbumsInPlaylist($id);
+        
+        $this->load->view('layout/header');
+        $this->load->view('playlist_detail', [
+            'playlist' => $playlist,
+            'songs' => $songs,
+            'albums' => $albums,
+            'utilisateur' => $this->session->userdata('utilisateur')
+        ]);
+        $this->load->view('layout/footer');
     }
 
-    public function select_songs() {
-        $chansons = $this->Model_music->getChansons();
-        $this->load->view('select_songs', ['chansons' => $chansons]);
+    public function add_to_playlist($song_id) {
+        $utilisateur_id = $this->session->userdata('utilisateur_id');
+        $playlists = $this->Model_playlist->getPlaylistsByUserId($utilisateur_id);
+        
+        $this->load->view('layout/header');
+        $this->load->view('add_to_playlist', [
+            'playlists' => $playlists,
+            'song_id' => $song_id
+        ]);
+        $this->load->view('layout/footer');
+    }
+
+    public function add_to_playlist_action() {
+        $playlist_id = $this->input->post('playlist_id');
+        $song_id = $this->input->post('song_id');
+        
+        $this->Model_playlist->addSongToPlaylist($playlist_id, $song_id);
+        redirect('playlist/view_playlist/' . $playlist_id);
     }
 }
 ?>
+

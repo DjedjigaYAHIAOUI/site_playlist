@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +37,10 @@
     </ul>
 </section>
 
+<!-- Ajout du bouton "Ajouter à la Playlist" pour chaque chanson -->
+<?php foreach ($songs as $song): ?>
+    <a href="<?php echo site_url('playlist/add_to_playlist/'.$song->id); ?>" class="btn-add-to-playlist">Ajouter à la Playlist</a>
+<?php endforeach; ?>
+
 </body>
 </html>
-

@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $album->name; ?> - Album Details</title>
+    <title><?php echo $album->name; ?> - Détails de l'Album</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style_common.css'); ?>">
 </head>
 <body>
 
-<h5><?php echo $album->name; ?> - Album Details</h5>
+<h5><?php echo $album->name; ?> - Détails de l'Album</h5>
 
 <section class="album-details">
     <div>
@@ -23,7 +24,7 @@
 </section>
 
 <section class="song-list">
-    <h3>Track List</h3>
+    <h3>Liste des Chansons</h3>
     <ul>
         <?php
         if (!empty($songs)) {
@@ -31,16 +32,14 @@
                 echo "<li>Track " . $song->number . ": " . $song->name . " (" . $song->duration . " seconds)</li>";
             }
         } else {
-            echo "<li>No songs found for this album.</li>";
+            echo "<li>Aucune chanson trouvée pour cet album.</li>";
         }
         ?>
     </ul>
 </section>
 
-<!-- Ajout du bouton "Ajouter à la Playlist" pour chaque chanson -->
-<?php foreach ($songs as $song): ?>
-    <a href="<?php echo site_url('playlist/add_to_playlist/'.$song->id); ?>" class="btn-add-to-playlist">Ajouter à la Playlist</a>
-<?php endforeach; ?>
+<!-- Bouton pour ajouter l'album entier à une playlist -->
+<a href="<?php echo site_url('playlist/add_album_to_playlist/' . $album->id . '/' . $playlist_id); ?>" class="btn-add-to-playlist">Ajouter l'album à la Playlist</a>
 
 </body>
 </html>

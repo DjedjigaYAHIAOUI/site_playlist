@@ -67,3 +67,4 @@ $route['playlist/create'] = 'playlist/create';
 $route['auth/register'] = 'auth/register';
 $route['auth/login'] = 'auth/login';
 $route['auth/logout'] = 'auth/logout';
+$route['playlist/add_to_playlist_song/(:num)'] = 'playlist/add_to_playlist/$1';

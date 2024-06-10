@@ -128,7 +128,7 @@ class Model_music extends CI_Model {
             FROM song
             JOIN track ON track.songId = song.id
             JOIN album ON track.albumId = album.id
-            WHERE album.artistid = ?
+            WHERE album.artistid =      ?
             ORDER BY album.year, track.number", array($artistId)
         );
         return $query->result();
@@ -153,5 +153,8 @@ class Model_music extends CI_Model {
         );
         return $result->result();
     }
+
+  
+    
+    
 }
-?>

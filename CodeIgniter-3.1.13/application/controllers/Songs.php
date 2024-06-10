@@ -1,4 +1,5 @@
-// Contrôleur Songs.php
+<?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Songs extends CI_Controller {
@@ -18,3 +19,4 @@ class Songs extends CI_Controller {
         $this->load->view('layout/footer');
     }
 }
+?>

@@ -10,7 +10,7 @@
                 <li>
                     <?php echo $song->name; ?>
                     <!-- Bouton pour ajouter chaque chanson à une playlist -->
-                    <a href="<?php echo site_url('playlist/add_to_playlist/song/' . $song->id); ?>" class="btn btn-primary">Ajouter à la playlist</a>
+                    <a href="<?php echo site_url('playlist/add_to_playlist_song/' . $song->id); ?>" class="btn btn-primary">Ajouter à la playlist</a>
                 </li>
             <?php endforeach; ?>
         </ul>

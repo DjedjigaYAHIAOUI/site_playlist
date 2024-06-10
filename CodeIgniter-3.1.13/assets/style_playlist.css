@@ -1,0 +1,98 @@
+/* style_playlist.css */
+
+/* Style de base */
+body {
+    background-color: #121212; /* Couleur de fond sombre */
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #FFD700; /* Couleur dorée pour le titre principal */
+    margin-top: 20px;
+}
+
+/* Liste des playlists */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 800px; /* Centrer la liste et limiter la largeur */
+}
+
+li {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #1e1e1e; /* Fond sombre pour les items */
+    border: 1px solid #444; /* Bord sombre pour les items */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+li a {
+  
+    text-decoration: none;
+    flex-grow: 1;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
+
+form {
+    display: inline-block;
+    margin: 0;
+}
+
+form button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+form .btn-info {
+    background-color: #FFD700; /* Couleur dorée pour le bouton dupliquer */
+    color: #121212; /* Texte sombre */
+}
+
+form .btn-info:hover {
+    background-color: #DAA520; /* Couleur plus foncée au survol */
+}
+
+form .btn-danger {
+    background-color: #B22222; /* Rouge pour le bouton supprimer */
+    color: #f0f0f0; /* Texte clair */
+}
+
+form .btn-danger:hover {
+    background-color: #8B0000; /* Rouge plus foncé au survol */
+}
+
+p {
+    text-align: center;
+    color: #e0e0e0;
+    margin-top: 20px;
+}
+
+a.btn-primary {
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #FFD700; /* Couleur dorée pour le bouton ajouter */
+    color: #121212;
+    text-decoration: none;
+    width: fit-content;
+}
+
+a.btn-primary:hover {
+    background-color: #DAA520;
+}

@@ -1,0 +1,117 @@
+/* style_list_albums.css */
+
+/* Style de base */
+body {
+    background-color: #121212; /* Couleur de fond sombre */
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #FFD700; /* Couleur dorée pour le titre principal */
+    margin-top: 20px;
+}
+
+h2, h3 {
+    color: #FFD700; /* Couleur dorée pour les sous-titres */
+}
+
+section.filters {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1e1e1e; /* Fond pour la section des filtres */
+    border-radius: 10px;
+    max-width: 800px;
+}
+
+.filters h2, .filters h3 {
+    margin-bottom: 10px;
+}
+
+.filters .filter-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.filters form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filters select, .filters button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #e0e0e0; /* Fond clair pour les entrées */
+    color: #121212; /* Texte sombre */
+}
+
+.filters button {
+    background-color: #FFD700; /* Bouton de filtrage doré */
+    cursor: pointer;
+}
+
+.filters button:hover {
+    background-color: #DAA520; /* Couleur dorée foncée au survol */
+}
+
+/* Liste des albums */
+section.albums-list {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.albums-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.albums-list li {
+    padding: 15px;
+    margin: 15px 0;
+    background-color: #1e1e1e; /* Fond sombre pour chaque album */
+    border: 1px solid #444; /* Bord sombre */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.albums-list h3 {
+    margin: 10px 0;
+}
+
+.albums-list p {
+    margin: 5px 0;
+    color: #e0e0e0;
+}
+
+.albums-list img {
+    max-width: 200px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Ombre pour les images */
+}
+
+.albums-list a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #FFD700; /* Couleur dorée pour les liens */
+    color: #121212;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.albums-list a:hover {
+    background-color: #DAA520; /* Couleur dorée foncée au survol */
+}

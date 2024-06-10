@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Albums List</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/style_list_albums.css'); ?>">
+   
+
+
 </head>
 <body>
     <h1>Albums List</h1>

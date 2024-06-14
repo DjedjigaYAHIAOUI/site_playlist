@@ -124,7 +124,6 @@ class Playlist extends CI_Controller {
 
     public function delete_playlist($playlist_id) {
         if ($playlist_id && is_numeric($playlist_id)) {
-            // Utiliser le modèle pour supprimer la playlist
             $result = $this->Model_playlist->deletePlaylist($playlist_id);
 
             if ($result) {
@@ -136,5 +135,76 @@ class Playlist extends CI_Controller {
             show_error('Identifiant de la playlist non valide.');
         }
     }
+    public function generate_random_playlist() {
+        
+        $songIds = $this->Model_music->get_all_song_ids();
+        $albumIds = $this->Model_music->get_all_album_ids();
+
+        
+        $randomSongIds = array_rand($songIds, 5); 
+        $randomAlbumIds = array_rand($albumIds, 3); 
+
+        $playlist_id = uniqid();
+        foreach ($randomSongIds as $songId) {
+            $this->Model_playlist->addSongToPlaylist($playlist_id, $songId);
+        }
+
+        
+        foreach ($randomAlbumIds as $albumId) {
+            $this->add_artist_songs_to_playlist($albumId, $playlist_id);
+        }
+
+        
+        redirect('playlist/view_playlist/' . $playlist_id);
+    }
+
+    private function add_artist_songs_to_playlist($album_id, $playlist_id) {
+        
+        $songIds = $this->Model_music->getSongIdsByAlbumId($album_id);
+        
+      
+        foreach ($songIds as $songId) {
+            $this->Model_playlist->addSongToPlaylist($playlist_id, $songId->id);
+        }
+    }
+      // Méthode pour afficher la liste des chansons de l'artiste et la sélection de la playlist
+      public function add_artist_to_playlist($artist_id) {
+        // Récupérer l'utilisateur actuel
+        $utilisateur_id = $this->session->userdata('utilisateur_id');
+        
+        // Récupérer les playlists de l'utilisateur
+        $playlists = $this->Model_playlist->getPlaylistsByUserId($utilisateur_id);
+
+        // Récupérer les chansons de l'artiste
+        $songs = $this->Model_music->getSongsByArtistId($artist_id);
+
+        // Charger la vue pour afficher les chansons et sélectionner la playlist
+        $this->load->view('layout/header');
+        $this->load->view('artist_song', [
+            'playlists' => $playlists,
+            'songs' => $songs,
+            'artist_id' => $artist_id
+        ]);
+        $this->load->view('layout/footer');
+    }
+
+    // Méthode pour ajouter toutes les chansons de l'artiste sélectionné à la playlist choisie
+    public function add_songs_to_playlist_action() {
+        // Récupérer les données du formulaire
+        $artist_id = $this->input->post('artist_id');
+        $playlist_id = $this->input->post('playlist_id');
+    
+        // Récupérer les chansons de l'artiste
+        $songs = $this->Model_music->getSongsByArtistId($artist_id);
+    
+        // Ajouter chaque chanson à la playlist
+        foreach ($songs as $song) {
+            $this->Model_playlist->addSongToPlaylist($playlist_id, $song->id);
+        }
+    
+        // Rediriger vers une page de succès ou de confirmation
+        redirect('playlist/view_playlist/' . $playlist_id);
+    }
+    
 }
 ?>

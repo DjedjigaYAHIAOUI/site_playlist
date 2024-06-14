@@ -155,6 +155,67 @@ class Model_music extends CI_Model {
     }
 
   
+    public function addSongToPlaylist($songId, $playlistId) {
+       
+        $existingEntry = $this->db->get_where('playlists_songs', array('playlist_id' => $playlistId, 'song_id' => $songId))->row();
+    
+        if (!$existingEntry) {
+          
+            $data = array(
+                'playlist_id' => $playlistId,
+                'song_id' => $songId
+            );
+    
+            return $this->db->insert('playlists_songs', $data); 
+        } else {
+            
+            return false;
+        }
+    }
+
+     
     
     
+    public function addAlbumToPlaylist($albumId, $playlistId) {
+        
+        $songIds = $this->getSongIdsByAlbumId($albumId);
+    
+       
+        if (!empty($songIds)) {
+       
+            foreach ($songIds as $songId) {
+                $data = array(
+                    'playlist_id' => $playlistId,
+                    'song_id' => $songId->id 
+                );
+    
+              
+                $this->db->insert('playlist_songs', $data);
+            }
+            return true; 
+        } else {
+            return false; 
+        }
+    }
+ 
+    public function getSongIdsByAlbumId($albumId) {
+        $query = $this->db->query(
+            "SELECT song.id
+            FROM track
+            JOIN song ON track.songId = song.id
+            WHERE track.albumId = ?", array($albumId)
+        );
+        return $query->result();
+    }
+    
+    public function get_all_album_ids() {
+        $this->db->select('id');
+        $query = $this->db->get('album');
+        return $query->result();
+    }
+    public function get_all_song_ids() {
+        $this->db->select('id');
+        $query = $this->db->get('song');
+        return $query->result();
+    }
 }

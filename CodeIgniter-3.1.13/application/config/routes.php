@@ -54,9 +54,7 @@ $route['default_controller'] = 'welcome'; // Contrôleur par défaut
 $route['search'] = 'search/index'; 
 $route['welcome/search'] = 'welcome/search';
 
-// Fichier routes.php
 
-// Route pour le contrôleur de recherche
 $route['404_override'] = '';
 $route['artists/view/(:num)'] = 'artists/view/$1';
 
@@ -68,3 +66,7 @@ $route['auth/register'] = 'auth/register';
 $route['auth/login'] = 'auth/login';
 $route['auth/logout'] = 'auth/logout';
 $route['playlist/add_to_playlist_song/(:num)'] = 'playlist/add_to_playlist/$1';
+$route['albums/add_album_to_playlist/(:num)/(:num)'] = 'albums/add_album_to_playlist/$1/$2';
+
+$route['albums/add_album_to_playlist_action'] = 'albums/add_album_to_playlist_action';
+

@@ -26,20 +26,30 @@
 <section class="song-list">
     <h3>Liste des Chansons</h3>
     <ul>
-        <?php
-        if (!empty($songs)) {
-            foreach ($songs as $song) {
-                echo "<li>Track " . $song->number . ": " . $song->name . " (" . $song->duration . " seconds)</li>";
-            }
-        } else {
-            echo "<li>Aucune chanson trouvée pour cet album.</li>";
-        }
-        ?>
+        <?php if (!empty($songs)) : ?>
+            <form method="post" action="<?php echo site_url('albums/add_album_to_playlist_action'); ?>">
+                <input type="hidden" name="album_id" value="<?php echo $album->id; ?>">
+                
+                <label for="playlist_id">Sélectionnez une playlist :</label>
+                <select name="playlist_id" id="playlist_id" required>
+                    <?php foreach ($playlists as $playlist) : ?>
+                        <option value="<?php echo $playlist->id; ?>"><?php echo $playlist->nom; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                
+                <button type="submit">Ajouter à la Playlist</button>
+            </form>
+
+            <?php foreach ($songs as $song) : ?>
+                <li>Track <?php echo $song->number; ?>: <?php echo $song->name; ?> (<?php echo $song->duration; ?> seconds)</li>
+            <?php endforeach; ?>
+
+        <?php else : ?>
+            <li>Aucune chanson trouvée pour cet album.</li>
+        <?php endif; ?>
     </ul>
 </section>
 
-<!-- Bouton pour ajouter l'album entier à une playlist -->
-<a href="<?php echo site_url('playlist/add_album_to_playlist/' . $album->id . '/' . $playlist_id); ?>" class="btn-add-to-playlist">Ajouter l'album à la Playlist</a>
 
 </body>
 </html>

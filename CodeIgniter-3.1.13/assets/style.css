@@ -2,51 +2,46 @@
 
 /* Style de base */
 body {
-    background-color: #121212; /* Couleur de fond sombre */
+    background-color: #121212;
     color: #e0e0e0;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-li {
-    padding: 8px;
-    margin: 4px 0;
-   
-}
-
-/* Style des sections d'artistes */
-.artist-section {
-    margin-bottom: 40px; /* Espace entre les sections */
+/* Sections d'artistes */
+.artist-sections {
+    margin: 20px auto;
     padding: 20px;
-    background-color: #1e1e1e; /* Fond pour chaque section */
-    border-radius: 10px; /* Bord arrondi pour un effet de carte */
+    width: 90%;
+    max-width: 1200px;
+}
+
+.artist-section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 10px;
 }
 
 .artist-section h2 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #FFD700; /* Couleur dorée pour les titres */
-    text-align: center; /* Centrer le titre */
+    color: #FFD700;
+    text-align: center;
 }
 
 /* Cercle pour les artistes */
 .artist-circles {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px; /* Espace entre les cercles */
-    justify-content: center; /* Centrer les cercles */
+    gap: 30px;
+    justify-content: center;
 }
 
 .artist-circle {
-    background: linear-gradient(145deg, #E6BE8A, #B8860B); /* Dégradé doré */
-    color: #121212; /* Couleur du texte */
+    background: linear-gradient(145deg, #E6BE8A, #B8860B);
+    color: #121212;
     border-radius: 50%;
     width: 100px;
     height: 100px;
@@ -56,28 +51,28 @@ li {
     text-align: center;
     font-size: 14px;
     font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour effet de profondeur */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s, background-color 0.3s;
 }
 
 .artist-circle:hover {
-    transform: scale(1.1); /* Zoom au survol */
-    background: linear-gradient(145deg, #FFD700, #DAA520); /* Couleur de fond au survol */
+    transform: scale(1.1);
+    background: linear-gradient(145deg, #FFD700, #DAA520);
 }
 
 .artist-circle a {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #121212; /* Couleur du texte */
+    color: #121212;
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    text-decoration: none; /* Retirer le soulignement des liens */
+    text-decoration: none;
 }
 
 .artist-circle a:hover {
-    color: #121212; /* Couleur du texte au survol */
+    color: #121212;
 }
 
 /* Formulaire de recherche */

@@ -33,7 +33,7 @@ class Auth extends CI_Controller {
             $user = $this->Model_user->login($nom_utilisateur, $mot_de_passe);
             if ($user) {
                 $this->session->set_userdata('utilisateur_id', $user->id);
-                redirect('playlist/create');
+                redirect('playlist');
             } else {
                 $this->load->view('login', array('error' => 'Nom d\'utilisateur ou mot de passe invalide.'));
             }

@@ -61,11 +61,16 @@ class Welcome extends CI_Controller {
         // Récupérer les chansons de l'artiste spécifié
         $songs = $this->Model_music->getSongsByArtistId($artistId);
 
-        // Charger la vue 'artist_songs.php' avec les chansons de l'artiste
+        $playlists = $this->Model_playlist->getAllPlaylists();
+
+        // Passer l'ID de l'artiste à la vue 'artist_songs.php' avec les chansons de l'artiste
         $this->load->view('artist_songs', [
-            'songs' => $songs
+            'songs' => $songs,
+            'playlists' => $playlists,
+            'artist_id' => $artistId  // Passer $artistId à la vue
         ]);
     }
+    
 }
 ?>
 

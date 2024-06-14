@@ -1,4 +1,3 @@
-<!-- application/views/playlist_details.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +28,10 @@
 <?php else: ?>
     <p>Aucune chanson n'est disponible dans cette playlist.</p>
 <?php endif; ?>
+
+<!-- Ajouter un lien pour générer une nouvelle playlist aléatoire -->
+<a href="<?php echo site_url('playlist/generate_random_playlist/' . $playlist->id); ?>" class="btn btn-primary">Générer une nouvelle playlist aléatoire</a>
+
 
 <a href="<?php echo site_url('playlist'); ?>" class="btn btn-secondary">Retour à la liste des playlists</a>
 

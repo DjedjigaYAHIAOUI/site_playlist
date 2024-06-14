@@ -73,44 +73,66 @@ class Model_playlist extends CI_Model {
         return $this->db->delete('playlist_songs');
     }
     public function duplicatePlaylist($playlist_id) {
-        $playlist = $this->getPlaylistById($playlist_id);
         
+        $playlist = $this->getPlaylistById($playlist_id);
+    
         if (!$playlist) {
             return false;
         }
-
+    
+      
+        do {
+            $new_playlist_id = bin2hex(random_bytes(8)); 
+            $existing = $this->db->get_where('playlists', ['id' => $new_playlist_id])->row();
+        } while ($existing);
+    
+        
         $new_playlist_data = [
+            'id' => $new_playlist_id,
             'nom' => $playlist->nom . ' (Copie)',
             'utilisateur_id' => $playlist->utilisateur_id
         ];
-        $this->db->insert('playlists', $new_playlist_data);
-        $new_playlist_id = $this->db->insert_id();
-
-        $songs = $this->getSongsInPlaylist($playlist_id);
-
-        foreach ($songs as $song) {
-            $this->db->insert('playlist_songs', [
-                'playlist_id' => $new_playlist_id,
-                'song_id' => $song->id
-            ]);
-        }
-
-        return $new_playlist_id;
-    }
-
-    public function deletePlaylist($playlist_id) {
-        // Vérifie si la playlist existe avant de la supprimer
-        $this->db->where('id', $playlist_id);
-        $this->db->delete('playlists');
-        
-        if ($this->db->affected_rows() > 0) {
-            // Suppression réussie
-            return true;
+    
+    
+        if ($this->db->insert('playlists', $new_playlist_data)) {
+            $songs = $this->getSongsInPlaylist($playlist_id);
+            foreach ($songs as $song) {
+                $this->db->insert('playlist_songs', [
+                    'playlist_id' => $new_playlist_id,
+                    'song_id' => $song->id
+                ]);
+            }
+    
+            return $new_playlist_id;
         } else {
-            // La playlist n'existe pas ou suppression échouée
+            $error = $this->db->error();
+            log_message('error', 'Database error during playlist duplication: ' . $error['message']);
             return false;
         }
     }
+    
+    public function deletePlaylist($playlist_id) {
+        $this->db->where('playlist_id', $playlist_id);
+        $this->db->delete('playlist_songs');
+    
+        $this->db->where('id', $playlist_id);
+        return $this->db->delete('playlists');
+    }
+    public function get_all_song_ids() {
+        $this->db->select('id');
+        $query = $this->db->get('song');
+        return $query->result_array();
+    }
+
+    public function get_all_album_ids() {
+        $this->db->select('id');
+        $query = $this->db->get('album');
+        return $query->result_array();
+    }
+
+    public function getAllPlaylists() {
+        $query = $this->db->get('playlists');
+        return $query->result();
+    }
 }
 ?>
-

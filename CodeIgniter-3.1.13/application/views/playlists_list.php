@@ -17,7 +17,7 @@
                 <a href="<?php echo site_url('playlist/view_playlist/' . $playlist->id); ?>">
                     <?php echo htmlspecialchars($playlist->nom); ?>
                 </a>
-                <form action="<?php echo site_url('playlist/duplicate_playlist'); ?>" method="post" style="display:inline;">
+                <form action="<?php echo site_url('playlist/duplicate_playlist/' . $playlist->id); ?>" method="post" style="display:inline;">
                     <input type="hidden" name="playlist_id" value="<?php echo $playlist->id; ?>">
                     <button type="submit" class="btn btn-info">Dupliquer</button>
                 </form>
@@ -31,7 +31,11 @@
     <p>Aucune playlist n'a été trouvée.</p>
 <?php endif; ?>
 
-<a href="<?php echo site_url('playlist/create'); ?>" class="btn btn-primary">Ajouter une nouvelle playlist</a>
+<div>
+    <a href="<?php echo site_url('playlist/create'); ?>" class="btn btn-primary">Ajouter une nouvelle playlist</a>
+    <!-- Ajouter le bouton pour générer une playlist aléatoire -->
+    <a href="<?php echo site_url('playlist/generate_random_playlist'); ?>" class="btn btn-secondary">Générer une playlist aléatoire</a>
+</div>
 
 </body>
 </html>

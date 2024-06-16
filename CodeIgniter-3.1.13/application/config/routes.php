@@ -69,4 +69,5 @@ $route['playlist/add_to_playlist_song/(:num)'] = 'playlist/add_to_playlist/$1';
 $route['albums/add_album_to_playlist/(:num)/(:num)'] = 'albums/add_album_to_playlist/$1/$2';
 
 $route['albums/add_album_to_playlist_action'] = 'albums/add_album_to_playlist_action';
+$route['artist/albums/(:num)'] = 'albums/artist_albums/$1';
 

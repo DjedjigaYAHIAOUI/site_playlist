@@ -217,5 +217,39 @@ class Model_music extends CI_Model {
         $this->db->select('id');
         $query = $this->db->get('song');
         return $query->result();
+
+        
     }
+    public function search_albums_by_letter($letter) {
+        $result = $this->db->query(
+            "SELECT album.name, album.id, year, artist.name as artistName, genre.name as genreName, jpeg 
+            FROM album 
+            JOIN artist ON album.artistid = artist.id
+            JOIN genre ON genre.id = album.genreid
+            JOIN cover ON cover.id = album.coverid
+            WHERE album.name LIKE ?", array("$letter%")
+        );
+        return $result->result();
+    }
+    
+    public function search_artists_by_letter($letter) {
+        $result = $this->db->query(
+            "SELECT id, name FROM artist 
+            WHERE name LIKE ?", array("$letter%")
+        );
+        return $result->result();
+    }
+    
+    public function search_songs_by_letter($letter) {
+        $result = $this->db->query(
+            "SELECT song.id, song.name as songName, album.name as albumName, artist.name as artistName
+            FROM song
+            JOIN track ON track.songId = song.id
+            JOIN album ON track.albumId = album.id
+            JOIN artist ON album.artistid = artist.id
+            WHERE song.name LIKE ?", array("$letter%")
+        );
+        return $result->result();
+    }
+    
 }

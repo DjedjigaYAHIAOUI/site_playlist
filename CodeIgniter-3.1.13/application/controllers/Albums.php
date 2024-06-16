@@ -98,6 +98,17 @@ class Albums extends CI_Controller {
         // Charger la vue des détails de l'album avec les données nécessaires
         $this->load->view('album_details', array('album' => $album, 'playlists' => $playlists));
     }
+    public function artist_albums($artistId){
+        // Récupérer les albums de l'artiste
+        $albums = $this->model_music->getAlbumsByArtistId($artistId);
+        // Récupérer les informations de l'artiste
+        $artist = $this->model_music->getArtistById($artistId);
+
+        // Passer les données à la vue
+        $this->load->view('layout/header');
+        $this->load->view('artist_albums', ['albums' => $albums, 'artist' => $artist]);
+        $this->load->view('layout/footer');
+    }
     
 }
 ?>

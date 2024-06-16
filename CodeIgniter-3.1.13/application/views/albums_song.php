@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title><?php echo $album->name; ?> - Détails de l'Album</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style_common.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/style_list_albums.css'); ?>">
 </head>
 <body>
 

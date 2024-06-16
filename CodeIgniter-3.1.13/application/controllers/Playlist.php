@@ -136,27 +136,37 @@ class Playlist extends CI_Controller {
         }
     }
     public function generate_random_playlist() {
-        
+        // Créer un nouvel ID de playlist
+        $playlist_id = uniqid();
+        $playlist_name = 'Random Playlist ' . date('Y-m-d H:i:s');
+    
+        // Insérer la nouvelle playlist dans la table playlists
+        $data = array(
+            'id' => $playlist_id,
+            'nom' => $playlist_name,
+            'utilisateur_id' => $this->session->userdata('utilisateur_id')
+        );
+        $this->db->insert('playlists', $data);
+    
+        // Continuer avec l'ajout des chansons à la playlist
         $songIds = $this->Model_music->get_all_song_ids();
         $albumIds = $this->Model_music->get_all_album_ids();
-
-        
-        $randomSongIds = array_rand($songIds, 5); 
-        $randomAlbumIds = array_rand($albumIds, 3); 
-
-        $playlist_id = uniqid();
+    
+        $randomSongIds = array_rand($songIds, 5);
+        $randomAlbumIds = array_rand($albumIds, 3);
+    
         foreach ($randomSongIds as $songId) {
             $this->Model_playlist->addSongToPlaylist($playlist_id, $songId);
         }
-
-        
+    
         foreach ($randomAlbumIds as $albumId) {
             $this->add_artist_songs_to_playlist($albumId, $playlist_id);
         }
-
-        
+    
+        // Rediriger vers la page de la nouvelle playlist
         redirect('playlist/view_playlist/' . $playlist_id);
     }
+    
 
     private function add_artist_songs_to_playlist($album_id, $playlist_id) {
         

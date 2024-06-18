@@ -12,9 +12,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     
         public function index() {
-            $query = $this->input->get('query');
-            $letter = $this->input->get('letter');
-    
+            $query = $this->input->get('$query');
+            $letter = $this->input->get('$letter');
+        
             if ($letter) {
                 $albums = $this->Model_music->search_albums_by_letter($letter);
                 $artists = $this->Model_music->search_artists_by_letter($letter);
@@ -24,8 +24,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $artists = $this->Model_music->search_artists($query);
                 $songs = $this->Model_music->search_songs($query);
             }
-    
-            $this->load->view('SearchView', ['albums' => $albums, 'artists' => $artists, 'songs' => $songs]);
+        
+            // Débogage
+            echo "<pre>";
+            print_r($songs);
+            echo "</pre>";
+            die();
+        
+            $this->load->view('search_results', ['albums' => $albums, 'artists' => $artists, 'songs' => $songs]);
         }
+        
     }
     

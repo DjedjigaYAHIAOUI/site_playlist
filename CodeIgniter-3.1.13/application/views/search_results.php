@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Résultats de Recherche</title>
-    
 </head>
 <body>
-   
 <section class="search-results">
     <h2>Résultats de Recherche</h2>
     
@@ -63,9 +61,5 @@
         <p class="no-album">Aucun album trouvé.</p>
     <?php endif; ?>
 </section>
-
-
- 
-
 </body>
 </html>

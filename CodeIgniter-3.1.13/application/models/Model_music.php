@@ -144,16 +144,19 @@ class Model_music extends CI_Model {
 
     public function searchSongs($query) {
         $result = $this->db->query(
-            "SELECT song.id, song.name, album.name as albumName, artist.name as artistName
+            "SELECT song.id, song.name AS songName, album.name AS albumName, artist.name AS artistName
             FROM song
             JOIN track ON track.songId = song.id
             JOIN album ON track.albumId = album.id
             JOIN artist ON album.artistid = artist.id
             WHERE song.name LIKE ?", array("%$query%")
         );
+    
+
+    
         return $result->result();
     }
-
+    
   
     public function addSongToPlaylist($songId, $playlistId) {
        
@@ -242,7 +245,7 @@ class Model_music extends CI_Model {
     
     public function search_songs_by_letter($letter) {
         $result = $this->db->query(
-            "SELECT song.id, song.name as songName, album.name as albumName, artist.name as artistName
+            "SELECT song.id, song.name AS songName, album.name AS albumName, artist.name AS artistName
             FROM song
             JOIN track ON track.songId = song.id
             JOIN album ON track.albumId = album.id
@@ -251,5 +254,6 @@ class Model_music extends CI_Model {
         );
         return $result->result();
     }
+    
     
 }

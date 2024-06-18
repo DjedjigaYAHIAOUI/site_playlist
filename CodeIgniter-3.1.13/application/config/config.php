@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'https://dwarves.iut-fbleau.fr/~yahiaouid/SAE_S2/SAE_S2/CodeIgniter-3.1.13/';
-$config['base_url'] = 'https://dwarves.iut-fbleau.fr/~hafsati/SAE_S2/SAE_S2/CodeIgniter-3.1.13/';
+
 /*
 |--------------------------------------------------------------------------
 | Index File

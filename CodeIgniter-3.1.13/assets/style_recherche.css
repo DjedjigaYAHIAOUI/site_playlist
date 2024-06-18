@@ -1,0 +1,133 @@
+/* style_recherche.css */
+
+/* Style de base */
+body, html {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Conteneur principal */
+.search-results {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1e1e1e; /* Couleur de fond */
+    color: #e0e0e0; /* Couleur du texte */
+}
+
+/* Titres des sections */
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #FFD700; /* Couleur du texte */
+    text-align: center;
+}
+
+h3 {
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #FFD700; /* Couleur du texte */
+}
+
+/* Listes de résultats */
+.song-list,
+.artist-list,
+.album-list {
+    margin-bottom: 30px;
+}
+
+/* Styles pour chaque élément de chanson */
+.song {
+    margin-bottom: 15px;
+}
+
+.song-bubble {
+    background-color: #1e1e1e; /* Couleur de fond */
+    padding: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.song-name {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #e0e0e0; /* Couleur du texte */
+}
+
+.song-album {
+    font-size: 16px;
+    color: #cccccc; /* Couleur du texte */
+}
+
+/* Styles pour chaque élément d'artiste */
+.artist {
+    margin-bottom: 10px;
+}
+
+.artist-bubble {
+    background-color: #1e1e1e; /* Couleur de fond */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.artist-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #e0e0e0; /* Couleur du texte */
+}
+
+.artist-name a {
+    color: #FFD700; /* Couleur du texte */
+    text-decoration: none;
+}
+
+.artist-name a:hover {
+    text-decoration: underline;
+}
+
+/* Styles pour chaque élément d'album */
+.album {
+    margin-bottom: 15px;
+}
+
+.album-bubble {
+    background-color: #1e1e1e; /* Couleur de fond */
+    padding: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.album-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #e0e0e0; /* Couleur du texte */
+}
+
+.album-title a {
+    color: #FFD700; /* Couleur du texte */
+    text-decoration: none;
+}
+
+.album-title a:hover {
+    text-decoration: underline;
+}
+
+.album-artist {
+    font-size: 16px;
+    color: #cccccc; /* Couleur du texte */
+}
+
+/* Message de résultat vide */
+.no-song,
+.no-artist,
+.no-album {
+    font-size: 16px;
+    color: #999999; /* Couleur du texte */
+    margin-top: 10px;
+}

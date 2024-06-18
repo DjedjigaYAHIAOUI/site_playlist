@@ -71,3 +71,6 @@ $route['albums/add_album_to_playlist/(:num)/(:num)'] = 'albums/add_album_to_play
 $route['albums/add_album_to_playlist_action'] = 'albums/add_album_to_playlist_action';
 $route['artist/albums/(:num)'] = 'albums/artist_albums/$1';
 
+$route['songs/view/(:num)'] = 'songs/view/$1';
+$route['albums/view/(:num)'] = 'albums/view/$1';
+$route['artists/view/(:num)'] = 'artists/view/$1';

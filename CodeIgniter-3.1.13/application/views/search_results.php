@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Résultats de Recherche</title>
+    <link rel="stylesheet" href="<?php echo base_url('assets/style_recherche.css'); ?>">
 </head>
 <body>
 <section class="search-results">
@@ -16,8 +17,23 @@
                 <section class="song">
                     <div class="song-bubble">
                         <div class="song-details">
+                            <!-- Lien vers les détails de la chanson -->
                             <div class="song-name"><?php echo $song->songName; ?></div>
-                            <div class="song-album"><?php echo $song->albumName; ?> - <?php echo $song->artistName; ?></div>
+                            <div class="song-album">
+                                <!-- Vérifiez si album_id est défini avant d'afficher le lien -->
+                                <?php if (isset($song->album_id)): ?>
+                                    <a href="<?php echo site_url('albums/view/' . $song->album_id); ?>">
+                                        <?php echo $song->albumName; ?>
+                                    </a> 
+                                    - 
+                                <?php endif; ?>
+                                <!-- Vérifiez si artist_id est défini avant d'afficher le lien -->
+                                <?php if (isset($song->artist_id)): ?>
+                                    <a href="<?php echo site_url('artists/view/' . $song->artist_id); ?>">
+                                        <?php echo $song->artistName; ?>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -33,7 +49,8 @@
             <?php foreach ($artists as $artist): ?>
                 <section class="artist">
                     <div class="artist-bubble">
-                        <a href="<?php echo site_url('artist/view/' . $artist->id); ?>">
+                        <!-- Lien vers les détails de l'artiste -->
+                        <a href="<?php echo site_url('artists/view/' . $artist->id); ?>">
                             <div class="artist-name"><?php echo $artist->name; ?></div>
                         </a>
                     </div>
@@ -50,8 +67,18 @@
             <?php foreach ($albums as $album): ?>
                 <section class="album">
                     <div class="album-bubble">
-                        <a href="<?php echo site_url('album/details/' . $album->id); ?>">
-                            <div class="album-title"><?php echo $album->name; ?> - <?php echo $album->artistName; ?></div>
+                        <!-- Lien vers les détails de l'album -->
+                        <a href="<?php echo site_url('albums/view/' . $album->id); ?>">
+                            <div class="album-title">
+                                <?php echo $album->name; ?>
+                            </div>
+                            - 
+                            <!-- Vérifiez si artist_id est défini avant d'afficher le lien -->
+                            <?php if (isset($album->artist_id)): ?>
+                                <a href="<?php echo site_url('artists/view/' . $album->artist_id); ?>">
+                                    <?php echo $album->artistName; ?>
+                                </a>
+                            <?php endif; ?>
                         </a>
                     </div>
                 </section>
@@ -63,3 +90,4 @@
 </section>
 </body>
 </html>
+

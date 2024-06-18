@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Détails de la Playlist</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/style.css'); ?>">
 </head>
 <body>
 

@@ -72,7 +72,7 @@ class Albums extends CI_Controller {
     
             if ($result) {
                 // Rediriger vers la vue de la playlist ou une autre action après l'ajout
-                redirect('playlist/view/' . $playlistId);
+                redirect('playlist/view_playlist/' . $playlistId);
             } else {
                 // Gérer les erreurs si nécessaire
                 // Par exemple, afficher un message d'erreur ou rediriger vers une page d'erreur

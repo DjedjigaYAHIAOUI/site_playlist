@@ -14,14 +14,30 @@ class Model_playlist extends CI_Model {
         return $query->result();
     }
 
-    public function createPlaylist($utilisateur_id, $id, $nom) {
+     public function createPlaylist($utilisateur_id, $id, $nom) {
+        // Vérifier si l'ID est déjà utilisé
+        do {
+            $query = $this->db->get_where('playlists', array('id' => $id));
+            $existing_playlist = $query->row();
+            if ($existing_playlist) {
+                // Générer un nouvel ID unique si celui-ci est déjà utilisé
+                $id = 'playlist_' . uniqid();
+            }
+        } while ($existing_playlist);
+
+        // Insérer la nouvelle playlist dans la base de données
         $data = array(
-            'utilisateur_id' => $utilisateur_id,
             'id' => $id,
-            'nom' => $nom
+            'nom' => $nom,
+            'utilisateur_id' => $utilisateur_id
         );
-        return $this->db->insert('playlists', $data);
+
+        $this->db->insert('playlists', $data);
+
+        // Vérifier si l'insertion a réussi
+        return $this->db->affected_rows() > 0;
     }
+
 
     public function getPlaylistById($id) {
         $this->db->where('id', $id);
